@@ -8,9 +8,6 @@ export const InputPage = () => {
                 <Navi />
             </header>
             <Sidebar />
-            <footer>
-                <Footer/>
-            </footer>
         </>
     )
 }
