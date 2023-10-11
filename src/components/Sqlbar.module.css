@@ -1,27 +1,26 @@
 .container {
-    background-color: #94ccea;
+    background-color: #339e2f;
   }
   
   .sqlbar {
     position: absolute;
-    bottom: -100%; /* 아래에서 숨겨진 상태 */
-    height: 70%;
+    bottom:0; /* 아래에서 숨겨진 상태 */
+    height: 5%;
     width: 100%;
     left: 0;
-
     background: #5c88f0;
-    padding: 20px;
-    transition: bottom 1s ease;
-    display: none;/* SQL 바를 숨깁니다. */
+    transition: height 1.5s ease, width 1s ease;
+
   }
-  
-  .sqlbar.open {
-    bottom: 0; /* 올라온 상태 */
-    display: block; /* SQL 바를 보이게 합니다. */
+
+  .open {
+    height:90%;
+    width: 100%;
+    /* SQL 바를 보이게 . */
   }
   
   .button {
-    position: absolute;
+    position: relative;
     bottom: 10px; /* 하단 여백 조정 */
     left: 50%; /* 화면 가운데로 이동 */
     transform: translateX(-50%); /* 수평으로 가운데 정렬 */
@@ -31,12 +30,12 @@
     transition: 0.8s ease;
     border: 2px solid #202020;
     border-radius: 40px;
-    overflow: hidden;
+
   }
   
   .openBtn {
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
   }
   
   .content {
