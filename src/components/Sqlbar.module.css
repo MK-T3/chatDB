@@ -20,7 +20,7 @@
   }
   
   .button {
-    position: relative;
+    position: absolute;
     bottom: 10px; /* 하단 여백 조정 */
     left: 50%; /* 화면 가운데로 이동 */
     transform: translateX(-50%); /* 수평으로 가운데 정렬 */
