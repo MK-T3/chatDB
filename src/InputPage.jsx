@@ -1,9 +1,16 @@
 import Navi from "./components/Navi"
-
-export const InputPage =()=>{
-    return(
+import { Sidebar } from "./components/Sidebar"
+import { Footer } from "./components/Footer"
+export const InputPage = () => {
+    return (
         <>
-        <Navi/>
+            <header>
+                <Navi />
+            </header>
+            <Sidebar />
+            <footer>
+                <Footer/>
+            </footer>
         </>
     )
 }
