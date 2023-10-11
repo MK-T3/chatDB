@@ -8,6 +8,8 @@ import { Cursor } from "./components/Cursor";
 import { InputPage } from "./InputPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
+// import {Sidebar} from "./components/Sidebar";
+
 
 function App() {
   const [menuOpened, setMenuOpened] = useState(false);
