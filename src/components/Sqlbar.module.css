@@ -7,9 +7,11 @@
     bottom:0; /* 아래에서 숨겨진 상태 */
     height: 5%;
     width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     left: 0;
-    background: #5c88f0;
-    transition: height 1.5s ease, width 1s ease;
+    background: #b3b5ba;
+    transition: height 1s ease, width 1s ease;
 
   }
 
@@ -24,11 +26,11 @@
     bottom: 10px; /* 하단 여백 조정 */
     left: 50%; /* 화면 가운데로 이동 */
     transform: translateX(-50%); /* 수평으로 가운데 정렬 */
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     z-index: 99;
     transition: 0.8s ease;
-    border: 2px solid #202020;
+
     border-radius: 40px;
 
   }
