@@ -1,4 +1,8 @@
-import { React, useState } from "react";
+
+import React, {useEffect, useRef, useState} from "react";
+import Sqlbar from "./Sqlbar";
+
+
 import {
   Card,
   Typography,
@@ -13,6 +17,7 @@ import {
   Alert,
   Input,
 } from "@material-tailwind/react";
+
 import {
   PresentationChartBarIcon,
   ShoppingBagIcon,
@@ -21,6 +26,7 @@ import {
   InboxIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
+
 import {
   ChevronRightIcon,
   ChevronDownIcon,
@@ -53,8 +59,12 @@ export function Sidebar(props) {
   };
 
   return (
+
     <>
-      <Card className="h-screen max-h-[42.5rem]-w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+
+=======
+      <Card className="h-screen max-h-[42.5rem] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+
         <div className="mb-2 flex items-center gap-4 p-4 justify-center">
           <div className="mt-6 flex max-w-md gap-x-4">
 
@@ -102,8 +112,12 @@ export function Sidebar(props) {
           </Accordion>
          
         </List>
+        <Sqlbar > 
+         </Sqlbar>
 
       </Card>
     </>
+
   );
 }
+
