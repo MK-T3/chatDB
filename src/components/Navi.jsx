@@ -9,12 +9,14 @@ const navigation = [
   { name: 'Login', href: '/Login', current: false },
 ]
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navi() {
   return (
+    
     <Disclosure as="nav" className="bg-indigo-600">
       {({ open }) => (
         <>
