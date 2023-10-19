@@ -38,6 +38,7 @@ import { Sqlsidebar } from "./Sqlsidebar.jsx";
 export function Sidebar(props) {
   const [open, setOpen] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const sqlQuery = `
   CREATE TABLE Students (
@@ -56,6 +57,12 @@ export function Sidebar(props) {
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
     setMenuOpen(!menuOpen);
+  };
+
+  const handleButtonClick = () => {
+    const inputValue = document.getElementById("email-address").value; // 입력된 요구사항을 가져옴
+    // 추출한 요구사항을 Sqlbar 컴포넌트에 전달하는 로직을 작성
+    setInputValue(inputValue);
   };
 
   return (
@@ -78,6 +85,7 @@ export function Sidebar(props) {
             />
             <button
               type="submit"
+              onClick={handleButtonClick}
               className="flex-none rounded-md bg-indigo-500 px-5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
@@ -105,14 +113,13 @@ export function Sidebar(props) {
             </ListItem>
             <AccordionBody className="py-1">
               <ListItem>
-                {sqlQuery}
+                {inputValue}
               </ListItem>
             </AccordionBody>
           </Accordion>
          
         </List>
-        <Sqlbar > 
-         </Sqlbar>
+        <Sqlbar inputValue={inputValue}/>
 
       </Card>
     </>

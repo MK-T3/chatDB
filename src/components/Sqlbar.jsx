@@ -7,26 +7,13 @@ import Editor from '@monaco-editor/react'
 	// return <Editor height='80%' />
 // };
 
-const Sqlbar = ({ children }) => {
+const Sqlbar = ({ inputValue }) => {
     const [isOpen, setOpen] = useState(false);
 
     const toggleMenu = () => {
         setOpen(!isOpen);
     };
-    const sqlQuery = `
-    CREATE TABLE Students (
-        StudentID INT PRIMARY KEY,\n
-        FirstName VARCHAR(50),\n
-        LastName VARCHAR(50),\n
-        Age INT,\n
-        GPA DECIMAL(3, 2)\n
-    );\n
-    \n
-    INSERT INTO Students (StudentID, FirstName, LastName, Age, GPA)\n
-    VALUES (1, 'John', 'Doe', 20, 3.75);\n\n
-  
-    SELECT * FROM Students;\n
-  `;
+    const sqlQuery = inputValue;
     return (
         <div className={styles.container}>
             <div
@@ -37,18 +24,8 @@ const Sqlbar = ({ children }) => {
 	            <Editor height='90%'
                         width={isOpen ? '100%' : '0%'}
                         language="sql"
-                        defaultValue=
-"CREATE TABLE Students (
-    StudentID INT PRIMARY KEY
-    FirstName VARCHAR(50)
-    LastName VARCHAR(50)
-    Age INT
-    GPA DECIMAL(3, 2)
-);
-INSERT INTO Students (StudentID, FirstName, LastName, Age, GPA)
-VALUES (1, 'John', 'Doe', 20, 3.75);
-
-SELECT * FROM Students;" 
+                        defaultValue="SELECT * FROM Students;"
+                        value={inputValue}
                         options={{
                             fontSize: 12,
                             minimap: {enabled : false},
