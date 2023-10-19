@@ -29,7 +29,6 @@ export default function Flow() {
       <ReactFlow nodes={nodes} edges={edges}>
       <Background />
         <Controls />
-      <Sidebar/>
       </ReactFlow>
     </div>
   );
