@@ -2,6 +2,7 @@ import Navi from "./components/Navi"
 import { Sidebar } from "./components/Sidebar"
 import { Footer } from "./components/Footer"
 import Flow from "./components/Flow"
+import MermaidChart from "./components/MermaidChart"
 
 export const InputPage = () => {
     return (
@@ -11,7 +12,7 @@ export const InputPage = () => {
             </header>
             <Sidebar/>
             <main>
-                <Flow/>
+            <Flow/>
             </main>
 
         </>
