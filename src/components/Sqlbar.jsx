@@ -9,11 +9,11 @@ import Editor from '@monaco-editor/react'
 
 const Sqlbar = ({ inputValue }) => {
     const [isOpen, setOpen] = useState(false);
+    const [sqlQuery, setSqlQuery] = useState(""); 
 
     const toggleMenu = () => {
         setOpen(!isOpen);
     };
-    const sqlQuery = inputValue;
     return (
         <div className={styles.container}>
             <div
@@ -25,7 +25,7 @@ const Sqlbar = ({ inputValue }) => {
                         width={isOpen ? '100%' : '0%'}
                         language="sql"
                         defaultValue="SELECT * FROM Students;"
-                        value={inputValue}
+                        value={sqlQuery}
                         options={{
                             fontSize: 12,
                             minimap: {enabled : false},
