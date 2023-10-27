@@ -34,7 +34,6 @@ const Sqlbar = (props) => {
                                 horizontal: 'auto'
                             }                            
                         }}
-
                         />
             </div>
             <button onClick={toggleMenu} className={styles.button}>
