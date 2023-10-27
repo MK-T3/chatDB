@@ -26,6 +26,7 @@ const Sqlbar = (props) => {
                         defaultValue="SELECT * FROM Students;"
                         value={responseValue}
                         options={{
+                            wordWrap: 'on',
                             fontSize: 12,
                             minimap: {enabled : false},
                             scrollbar: {
