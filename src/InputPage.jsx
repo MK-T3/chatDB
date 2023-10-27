@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer"
 import Flow from "./components/Flow"
 import MermaidChart from "./components/MermaidChart"
 
+
 export const InputPage = () => {
     return (
         <>
