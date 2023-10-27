@@ -59,10 +59,43 @@ export function Sidebar(props) {
     setMenuOpen(!menuOpen);
   };
 
+  // const handleButtonClick = () => {
+  //   const inputValue = document.getElementById("email-address").value; // 입력된 요구사항을 가져옴
+  //   // 추출한 요구사항을 Sqlbar 컴포넌트에 전달하는 로직을 작성
+  //   setInputValue(inputValue);
+  // };
+
   const handleButtonClick = () => {
-    const inputValue = document.getElementById("email-address").value; // 입력된 요구사항을 가져옴
-    // 추출한 요구사항을 Sqlbar 컴포넌트에 전달하는 로직을 작성
-    setInputValue(inputValue);
+    // 버튼 클릭 시 동작할 로직 작성
+    const message = inputValue; // 전송할 예시 메시지
+
+    // 메시지를 포함한 JSON 객체 생성
+    const data = {
+      message: message
+    };
+  
+    // HTTP POST 요청으로 데이터를 서버로 전송
+    fetch('http://dbwizard.iptime.org:8031', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        return response.json(); // 서버 응답을 JSON 형식으로 파싱
+        // 필요한 경우 서버 응답 처리
+      })
+      .then(data => {
+        console.log('Response:', data);
+        setParentContentValue (data.message);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // 요청 중에 발생한 오류 처리
+      });
+    
+    // setParentContentValue (inputValue);
   };
 
   return (
