@@ -39,6 +39,7 @@ export function Sidebar(props) {
   const [open, setOpen] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [responseValue, setResponseValue] = useState("");
 
   const sqlQuery = `
   CREATE TABLE Students (
@@ -65,6 +66,10 @@ export function Sidebar(props) {
   //   setInputValue(inputValue);
   // };
 
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   const handleButtonClick = () => {
     // 버튼 클릭 시 동작할 로직 작성
     const message = inputValue; // 전송할 예시 메시지
@@ -88,7 +93,7 @@ export function Sidebar(props) {
       })
       .then(data => {
         console.log('Response:', data);
-        setParentContentValue (data.message);
+        setResponseValue (data.message);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -114,7 +119,7 @@ export function Sidebar(props) {
               autoComplete="email"
               required
               className="min-w-0 text flex-auto rounded-md border-0 bg-white/5 px-6 py-2 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-              placeholder="요구사항을 입력하세요"
+              value={inputValue} onChange={handleInputChange} placeholder="요구사항을 입력하세요." 
             />
             <button
               type="submit"
@@ -146,13 +151,13 @@ export function Sidebar(props) {
             </ListItem>
             <AccordionBody className="py-1">
               <ListItem>
-                {inputValue}
+                {responseValue}
               </ListItem>
             </AccordionBody>
           </Accordion>
          
         </List>
-        <Sqlbar inputValue={inputValue}/>
+        <Sqlbar responseValue={responseValue}/>
 
       </Card>
     </>
