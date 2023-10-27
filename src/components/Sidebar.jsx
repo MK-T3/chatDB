@@ -41,30 +41,10 @@ export function Sidebar(props) {
   const [inputValue, setInputValue] = useState("");
   const [responseValue, setResponseValue] = useState("");
 
-  const sqlQuery = `
-  CREATE TABLE Students (
-      StudentID INT PRIMARY KEY,
-      FirstName VARCHAR(50),
-      LastName VARCHAR(50),
-      Age INT,
-      GPA DECIMAL(3, 2)
-  );
-
-  INSERT INTO Students (StudentID, FirstName, LastName, Age, GPA)
-  VALUES (1, 'John', 'Doe', 20, 3.75);
-
-  SELECT * FROM Students;
-`;
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
     setMenuOpen(!menuOpen);
   };
-
-  // const handleButtonClick = () => {
-  //   const inputValue = document.getElementById("email-address").value; // 입력된 요구사항을 가져옴
-  //   // 추출한 요구사항을 Sqlbar 컴포넌트에 전달하는 로직을 작성
-  //   setInputValue(inputValue);
-  // };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
