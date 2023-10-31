@@ -91,7 +91,7 @@ const ContactSection = () => {
   return (
     <Section>
       <h2 className="text-5xl font-bold">Contact us</h2>
-      <h3 classNam="text-2xl font-bold"> if you have problems</h3>
+      <h3 className="text-2xl font-bold"> if you have problems</h3>
       <div className="mt-8 p-8 rounded-md bg-white w-96 max-w-full">
         <form>
           <label for="name" className="font-medium text-gray-900 block mb-1">
