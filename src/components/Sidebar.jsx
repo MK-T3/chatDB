@@ -159,7 +159,7 @@ export function Sidebar(props) {
             <ListItem className="p-" selected={open === 1}>
               <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
                 <div class="flex">
-                  <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">SQL Query</button>
+                  <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">SQL Query</button>
                 </div>
               </AccordionHeader>
             </ListItem>

@@ -11,7 +11,6 @@ import { Home } from "./components/Home";
 import { Enter } from "./components/Enter.jsx";
 // import {Sidebar} from "./components/Sidebar";
 
-
 function App() {
   const [menuOpened, setMenuOpened] = useState(false);
   return (
@@ -20,7 +19,7 @@ function App() {
     <Routes>
       <Route path={"/"} element={<Home/>}></Route>
       <Route path={"/InputPage"} element={<InputPage/>}></Route>
-      <Route path={"/components/Enter"} element={<Enter/>}></Route>   {/* Login 페이지를 Routes에 추가합니다. */}
+      <Route path={"/Login"} element={<Enter/>}></Route>   {/* Login 페이지를 Routes에 추가합니다. */}
     </Routes>
     </BrowserRouter>
       {/*<h1 style={{ position: 'absolute', top: 50, left: 40, fontSize: '15px', color: 'Black' }}>ChatDB</h1>*/}

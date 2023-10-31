@@ -37,6 +37,8 @@ export const Interface = () => {
 };
 
 const AboutSection = () => {
+  
+
   return (
     <Section>
       <h1 className="text-6xl font-extrabold leading-snug">
@@ -78,8 +80,9 @@ const AboutSection = () => {
           duration: 1,
           delay: 2,
         }}
+      
       >
-        Start
+       Start
       </motion.button>
     </Section>
   );
@@ -94,7 +97,7 @@ const ContactSection = () => {
       <h3 className="text-2xl font-bold"> if you have problems</h3>
       <div className="mt-8 p-8 rounded-md bg-white w-96 max-w-full">
         <form>
-          <label for="name" className="font-medium text-gray-900 block mb-1">
+          <label htmlFor="name" className="font-medium text-gray-900 block mb-1">
             Name
           </label>
           <input
@@ -104,7 +107,7 @@ const ContactSection = () => {
             className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
           />
           <label
-            for="email"
+            htmlFor="email"
             className="font-medium text-gray-900 block mb-1 mt-8"
           >
             Email
@@ -116,7 +119,7 @@ const ContactSection = () => {
             className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
           />
           <label
-            for="email"
+            htmlFor="email"
             className="font-medium text-gray-900 block mb-1 mt-8"
           >
             Message
