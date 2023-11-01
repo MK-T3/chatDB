@@ -17,8 +17,6 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { ChatbotUI } from './ChatbotUI';
-import Modal from 'react-modal';
-import { Enter } from './Enter';
 
 const navigation = [
   { name: 'Dashboard', current: true },
@@ -34,13 +32,13 @@ function classNames(...classes) {
 export default function Navi() {
 
   const [openRight, setOpenRight] = useState(false);
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
+
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
 
-
   const handleLoginClick = () => {
-    setLoginModalOpen(true);
+    console.log("login");
+
   };
   const handleSaveClick = () => {
     console.log("save");
@@ -93,14 +91,7 @@ export default function Navi() {
           </button>
         </div>
       </nav>
-      <Modal
-        isOpen={loginModalOpen}
-        onRequestClose={() => setLoginModalOpen(false)}
-        ariaHideApp={false}
-      >
-        <button onClick={() => setLoginModalOpen(false)}>Close</button>
-        <Enter />
-        </Modal>
+
     </header>
   )
 }

@@ -1,21 +1,17 @@
 import Navi from "./components/Navi"
 import { Sidebar } from "./components/Sidebar"
-import { Footer } from "./components/Footer"
-import Flow from "./components/Flow"
-import MermaidChart from "./components/MermaidChart"
-
+import { useState } from "react"
 
 
 export const InputPage = () => {
+    const [sidebar, setSidebar] = useState(false);
+
     return (
         <>
             <header>
                 <Navi />               
             </header>
-            <Sidebar/>
-            <main>
-            <Flow/>
-            </main>
+            <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
 
         </>
     )

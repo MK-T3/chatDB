@@ -21,7 +21,7 @@ function App() {
       <Route path={"/InputPage"} element={<InputPage/>}></Route>
       <Route path={"/Login"} element={<Enter/>}></Route>   {/* Login 페이지를 Routes에 추가합니다. */}
     </Routes>
-    </BrowserRouter>
+  </BrowserRouter>
       {/*<h1 style={{ position: 'absolute', top: 50, left: 40, fontSize: '15px', color: 'Black' }}>ChatDB</h1>*/}
     </>
   );
