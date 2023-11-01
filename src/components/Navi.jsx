@@ -17,6 +17,8 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { ChatbotUI } from './ChatbotUI';
+import Modal from 'react-modal';
+import { Enter } from './Enter';
 
 const navigation = [
   { name: 'Dashboard', current: true },
@@ -31,14 +33,14 @@ function classNames(...classes) {
 
 export default function Navi() {
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openRight, setOpenRight] = useState(false);
-
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
 
   const handleLoginClick = () => {
-    console.log("login");
-
+    setLoginModalOpen(true);
   };
   const handleSaveClick = () => {
     console.log("save");
@@ -48,6 +50,19 @@ export default function Navi() {
   };
   const handleConcactClick = () => {
     console.log("contact");
+  };
+
+  const LoginModalStyles = {
+    content: {
+      transform: loginModalOpen ? 'translateY(0)' : 'translateY(-100vh)', // 모달 창이 내려오는 애니메이션 효과
+      transition: 'transform 0.3s ease-in-out', // 애니메이션의 속도와 이징 설정
+      width: '50%', // 모달 창의 너비를 조정할 수 있습니다
+      maxWidth: '500px', // 모달 창의 최대 너비를 제한할 수 있습니다
+      height: '50%', // 모달 창의 높이를 조정할 수 있습니다
+      maxHeight: '500px', // 모달 창의 최대 높이를 제한할 수 있습니다
+      margin: 'auto',
+      backgroundColor: 'rgb(79, 70, 229)',
+    }
   };
 
   return (
@@ -91,7 +106,16 @@ export default function Navi() {
           </button>
         </div>
       </nav>
-
+      <Modal
+        isOpen={loginModalOpen}
+        onRequestClose={() => setLoginModalOpen(false)}
+        ariaHideApp={false}
+        style={LoginModalStyles} // customModalStyles를 모달의 스타일로 적용합니다
+        
+      >
+        <button onClick={() => setLoginModalOpen(false)}>Close</button>
+        <Enter />
+      </Modal>
     </header>
   )
 }

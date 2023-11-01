@@ -1,14 +1,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: rgb(150, 209, 148);
-  margin: 50px;
-
-}
-
 .background {
-  background-color: white;
+  background-color: #FFFFFF; /* 파란색 계열 배경색 */
   height: auto;
   width: 90%;
   max-width: 450px;
@@ -33,19 +26,20 @@ body {
   font-weight: 700;
   transition: .2s;
   width: 75%;
+
 }
 
 .login:active,
 .login:focus,
 .login:hover {
   outline: none;
-  border-bottom-color: rgb(68, 112, 67);
+  border-bottom-color: #2B6BFF; /* 파란색 계열 하이라이트 색상 */
 }
 
 .btn {
   border: none;
   width: 75%;
-  background-color: rgb(68, 112, 67);
+  background-color: #2B6BFF; /* 파란색 계열 배경색 */
   color: white;
   padding: 15px 0;
   font-weight: 600;
@@ -55,5 +49,10 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(49, 82, 48);
+  background-color: #1A4ABF; /* 파란색 계열 하이라이트 배경색 */
+}
+
+.btn:disabled {
+  background-color: #D1D1D4; /* 비활성 상태 배경색 */
+  cursor: not-allowed;
 }
