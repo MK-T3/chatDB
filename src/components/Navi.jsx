@@ -15,8 +15,12 @@ import {
   Button,
   Typography,
   IconButton,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 } from "@material-tailwind/react";
 import { ChatbotUI } from './ChatbotUI';
+import { v4 as uuidv4 } from 'uuid';
 import Modal from 'react-modal';
 import { Enter } from './Enter';
 
@@ -36,20 +40,42 @@ export default function Navi() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openRight, setOpenRight] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [isShareOpen, setShareOpen] = useState(false);
+  const [textBoxValue, setTextBoxValue] = useState('');
+  const [copyMessage, setCopyMessage] = useState('');
+
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
+
+  const copyKey = () =>{
+    navigator.clipboard.writeText(textBoxValue);
+    setCopyMessage('복사되었습니다!');
+  }
+
+  const createKey = () =>{
+    const key = uuidv4();
+    setTextBoxValue(key);
+    setCopyMessage('');
+  }
 
   const handleLoginClick = () => {
     setLoginModalOpen(true);
   };
+
   const handleSaveClick = () => {
     console.log("save");
   };
+
   const handleShareClick = () => {
-    console.log("share");
+    setShareOpen(true);
   };
+
   const handleConcactClick = () => {
     console.log("contact");
+  };
+
+  const handleShareDialogClose = () => {
+    setShareOpen(false);
   };
 
   const LoginModalStyles = {
@@ -106,12 +132,43 @@ export default function Navi() {
           </button>
         </div>
       </nav>
+      {isShareOpen && (
+        <Dialog
+          open={isShareOpen}
+          onClose={handleShareDialogClose}
+          className="fixed inset-0 flex items-center justify-center"
+          overlayClassName="fixed inset-0 bg-black opacity-50"
+        >
+          <div className="bg-white rounded-lg p-4 w-2/5 flex flex-col">
+            <DialogHeader>Share Dialog</DialogHeader>
+            <DialogBody>
+              <samp></samp>
+              <p className="text-gray-700">Save or share your work with key generation!.</p>
+              <div className="flex">
+                <input type="text" value={textBoxValue} className="border border-gray-300 px-1 py-2 rounded-md flex-grow" />
+                <Button variant="outlined" color="green" onClick={copyKey} className='px-2'>
+                  <span>Copy</span>
+                </Button>
+              </div>
+              {copyMessage && <p className="text-green-500 mt-2">{copyMessage}</p>}
+            </DialogBody>
+            <DialogFooter className="flex justify-end">
+              <Button onClick={createKey} variant="text" color = "red" className="px-4 mr-2">
+                Create
+              </Button>
+              <Button onClick={handleShareDialogClose} variant="text" className="px-4">
+                Close
+              </Button>
+            </DialogFooter>
+          </div>
+        </Dialog>
+      )}
+
       <Modal
         isOpen={loginModalOpen}
         onRequestClose={() => setLoginModalOpen(false)}
         ariaHideApp={false}
-        style={LoginModalStyles} // customModalStyles를 모달의 스타일로 적용합니다
-        
+        style={LoginModalStyles}
       >
         <button onClick={() => setLoginModalOpen(false)}>Close</button>
         <Enter />
