@@ -50,24 +50,28 @@ export default function Navi() {
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
 
-  const copyKey = () =>{
-    navigator.clipboard.writeText(textBoxValue);
-    setCopyMessage('복사되었습니다!');
-  }
+  //save
+  const [open, setOpen] = useState(false);
+  const cancelButtonRef = useRef(null)
+ 
+  //share
+  const [openShare, setOpenShare] = useState(false);
+  const cancelShareRef = useRef(null)
 
-  const createKey = () =>{
+  //contact
+  const [openConcact, setOpenConcact] = useState(false);
+  const cancelConcactRef = useRef(null)
+
+  const createKey = () => {
     const key = uuidv4();
     setTextBoxValue(key);
     setCopyMessage('');
   }
+  const copyKey = () => {
+    navigator.clipboard.writeText(textBoxValue);
+    setCopyMessage('복사되었습니다!');
+  }
 
-  //save
-  const [open, setOpen] = useState(false);
-  const cancelButtonRef = useRef(null)
-  
-  //contact
-  const [openConcact, setOpenConcact] = useState(false);
-  const cancelConcactRef = useRef(null)
   
   const handleLoginClick = () => {
     setLoginModalOpen(true);
@@ -79,16 +83,14 @@ export default function Navi() {
   };
 
   const handleShareClick = () => {
-    setShareOpen(true);
+    setOpenShare(!openShare);
   };
 
   const handleConcactClick = () => {
     setOpenConcact(!openConcact);
   };
 
-  const handleShareDialogClose = () => {
-    setShareOpen(false);
-  };
+
 
   const LoginModalStyles = {
     content: {
@@ -185,7 +187,79 @@ export default function Navi() {
           </Transition.Root>
           <button className="text-lg font-bold leading-6 text-white" onClick={handleShareClick}>
             Share
-          </button>
+            </button>
+          <Transition.Root show={openShare} as={Fragment}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelShareRef} onClose={setOpenShare}>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              </Transition.Child>
+              <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  >
+                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                      <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div className="sm:flex sm:items-start">
+                          <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                          </div>
+                          <div className="mt-3 text-center sm:ml-6 sm:mt-0 sm:text-left">
+                            <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 mb-2">
+                              Share
+                            </Dialog.Title>
+                            <hr className="border-blue-gray-50" />
+                            <div class="mt-2">
+                              Copy the key below and share it with your team!
+                            </div>
+                            <div className="flex w-full mt-6 flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
+                              {uuidv4()}
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button
+                          type="button"
+                          className="inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 sm:ml-3 sm:w-auto"
+                          onClick={() => setOpenShare(false)}
+                        >
+                          Share
+                        </button>
+                        <button
+                          type="button"
+                          className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                          onClick={() => setOpenShare(false)}
+                          ref={cancelShareRef}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </Dialog.Panel>
+                  </Transition.Child>
+                </div>
+              </div>
+            </Dialog>
+          </Transition.Root>
           <button className="text-lg font-bold leading-6 text-white" onClick={handleConcactClick}>
             Contact
           </button>
@@ -296,7 +370,7 @@ export default function Navi() {
         </Popover.Group>
         <Drawer placement="right" open={openRight} onClose={closeDrawerRight} className="p-4">
           <div className="mb-7 flex items-center justify-between">
-            <h3 class="text-lg text-center font-bold">
+            <h3 class="text-xl text-center font-bold">
               ChatBot Service
             </h3>
           </div>
@@ -313,37 +387,6 @@ export default function Navi() {
           </button>
         </div>
       </nav>
-      {isShareOpen && (
-        <Dialog
-          open={isShareOpen}
-          onClose={handleShareDialogClose}
-          className="fixed inset-0 flex items-center justify-center"
-          overlayClassName="fixed inset-0 bg-black opacity-50"
-        >
-          <div className="bg-white rounded-lg p-4 w-2/5 flex flex-col">
-            <DialogHeader>Share Dialog</DialogHeader>
-            <DialogBody>
-              <samp></samp>
-              <p className="text-gray-700">Save or share your work with key generation!.</p>
-              <div className="flex">
-                <input type="text" value={textBoxValue} className="border border-gray-300 px-1 py-2 rounded-md flex-grow" />
-                <Button variant="outlined" color="green" onClick={copyKey} className='px-2'>
-                  <span>Copy</span>
-                </Button>
-              </div>
-              {copyMessage && <p className="text-green-500 mt-2">{copyMessage}</p>}
-            </DialogBody>
-            <DialogFooter className="flex justify-end">
-              <Button onClick={createKey} variant="text" color = "red" className="px-4 mr-2">
-                Create
-              </Button>
-              <Button onClick={handleShareDialogClose} variant="text" className="px-4">
-                Close
-              </Button>
-            </DialogFooter>
-          </div>
-        </Dialog>
-      )}
 
       <Modal
         isOpen={loginModalOpen}
