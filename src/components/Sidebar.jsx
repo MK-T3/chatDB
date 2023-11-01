@@ -7,9 +7,7 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  IconButton,
-  Button,
-  Drawer,
+  Tooltip,
   Typography
 } from "@material-tailwind/react";
 import {
@@ -43,7 +41,7 @@ export function Sidebar(props) {
   return (
     <>
       <Card className="h-[calc(93vh)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 gap-4">
-        <h2 class="text-center font-bold text-lg">요구사항을 입력하세요!</h2>
+        <h1 class="text-center font-bold text-lg">요구사항을 입력하세요!</h1>
         <Typography variant="lead" >
           Enter the requirements in the input window
           below to obtain the database schema and SQL Query!
@@ -53,12 +51,14 @@ export function Sidebar(props) {
           <Textarea rows={8} placeholder="Input your Requirement" />
         </div>
         <div class="flex">
-          <button
-            type="submit"
-            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5  font-bold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Enter
-          </button>
+          <Tooltip content="Send your requirement">
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5  font-bold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Enter
+            </button>
+          </Tooltip>
         </div>
         <hr className="border-blue-gray-50" />
         {/*sql query 버튼*/}
@@ -69,7 +69,7 @@ export function Sidebar(props) {
               <ChevronDownIcon
                 strokeWidth={2.5}
                 //버튼 회전
-                className={`mx-auto h-4 w-4 transition-transform rotate-180 ${open === 1 ? "rotate-0" : ""}`}
+                className={`mx-auto h-4 w-4 transition-transform rotate-0 ${open === 1 ? "rotate-180" : ""}`}
               />
             }
           >
