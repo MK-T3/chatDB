@@ -1,17 +1,16 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   Card,
-  Typography,
   List,
   ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
+  Textarea,
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Alert,
-  Input,
+  IconButton,
+  Button,
+  Drawer,
+  Typography
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
@@ -27,130 +26,66 @@ import {
   CubeTransparentIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
- 
-export function Sidebar() {
-  const [open, setOpen] = React.useState(0);
-  const [openAlert, setOpenAlert] = React.useState(true);
- 
+
+export function Sidebar(props) {
+  const [open, setOpen] = useState(0);
+  const { sidebar, setSidebar } = props;
+
+  const query = "SELECT name, population FROM city WHERE population <= 10000000 AND population >= 8000000 ORDER BY population DESC"
+
+
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
+    setSidebar(!sidebar)
   };
- 
+
+
   return (
-    <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
-      <div className="mb-2 flex items-center gap-4 p-4">
-        <Typography variant="h5" color="blue-gray">
-          요구사항을 입력하세요
-        </Typography>
+    <Card className="h-[calc(93vh)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 gap-4">
+
+      <Typography variant="h2" class="text-center font-bold text-lg">요구사항을 입력하세요!</Typography>
+      <Typography variant="lead" >
+        Enter the requirements in the input window
+        below to obtain the database schema and SQL Query!
+      </Typography>
+      <hr className="my-2 border-blue-gray-50" />
+      <div className="w-auto border-indigo-600">
+        <Textarea rows={8} placeholder="Input your Requirement" />
       </div>
-      <div className="p-8">
-        <Input icon={<MagnifyingGlassIcon className="h-4 w-4" />} />
+      <div class="flex">
+        <button
+          type="submit"
+          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5  font-bold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Enter
+        </button>
       </div>
+      <hr className="border-blue-gray-50" />
+      {/*sql query 버튼*/}
       <List>
         <Accordion
           open={open === 1}
           icon={
             <ChevronDownIcon
               strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""}`}
+              //버튼 회전
+              className={`mx-auto h-4 w-4 transition-transform rotate-180 ${open === 1 ? "rotate-0" : ""}`}
             />
           }
         >
-          <ListItem className="p-" selected={open === 1}>
+          <ListItem className="p-3" selected={open === 1}>
             <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
-              <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
-                Dashboard
-              </Typography>
+              <div class="flex">
+                <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">SQL Query</button>
+              </div>
             </AccordionHeader>
           </ListItem>
+          <hr className="my-2 border-blue-gray-50" />
           <AccordionBody className="py-1">
-            <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Analytics
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Reporting
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Projects
-              </ListItem>
-            </List>
+            <div>{query}</div>
           </AccordionBody>
         </Accordion>
-        <Accordion
-          open={open === 2}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? "rotate-180" : ""}`}
-            />
-          }
-        >
-          <ListItem className="p-0" selected={open === 2}>
-            <AccordionHeader onClick={() => handleOpen(2)} className="border-b-0 p-3">
-              <ListItemPrefix>
-                <ShoppingBagIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
-                E-Commerce
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className="py-1">
-            <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Orders
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Products
-              </ListItem>
-            </List>
-          </AccordionBody>
-        </Accordion>
-        <hr className="my-2 border-blue-gray-50" />
       </List>
-      <Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>
-        <CubeTransparentIcon className="mb-4 h-12 w-12" />
-        <Typography variant="h6" className="mb-1">
-          Upgrade to PRO
-        </Typography>
-        <Typography variant="small" className="font-normal opacity-80">
-          Upgrade to Material Tailwind PRO and get even more components, plugins, advanced features
-          and premium.
-        </Typography>
-        <div className="mt-4 flex gap-3">
-          <Typography
-            as="a"
-            href="#"
-            variant="small"
-            className="font-medium opacity-80"
-            onClick={() => setOpenAlert(false)}
-          >
-            Dismiss
-          </Typography>
-          <Typography as="a" href="#" variant="small" className="font-medium">
-            Upgrade Now
-          </Typography>
-        </div>
-      </Alert>
     </Card>
   );
 }

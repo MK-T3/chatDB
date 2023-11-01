@@ -1,16 +1,18 @@
 import Navi from "./components/Navi"
 import { Sidebar } from "./components/Sidebar"
-import { Footer } from "./components/Footer"
+import { useState } from "react"
 export const InputPage = () => {
+    const [sidebar, setSidebar] = useState(false);
+
     return (
         <>
             <header>
                 <Navi />
             </header>
-            <Sidebar />
-            <footer>
+            <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
+            {/*<footer>
                 <Footer/>
-            </footer>
+    </footer>*/}
         </>
     )
 }
