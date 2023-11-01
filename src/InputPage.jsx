@@ -1,6 +1,7 @@
 import Navi from "./components/Navi"
 import { Sidebar } from "./components/Sidebar"
 import { useState } from "react"
+
 export const InputPage = () => {
     const [sidebar, setSidebar] = useState(false);
 
@@ -10,9 +11,6 @@ export const InputPage = () => {
                 <Navi />
             </header>
             <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
-            {/*<footer>
-                <Footer/>
-    </footer>*/}
         </>
     )
 }

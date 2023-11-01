@@ -43,7 +43,7 @@ export function Sidebar(props) {
   return (
     <Card className="h-[calc(93vh)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 gap-4">
 
-      <Typography variant="h2" class="text-center font-bold text-lg">요구사항을 입력하세요!</Typography>
+      <h2 class="text-center font-bold text-lg">요구사항을 입력하세요!</h2>
       <Typography variant="lead" >
         Enter the requirements in the input window
         below to obtain the database schema and SQL Query!
