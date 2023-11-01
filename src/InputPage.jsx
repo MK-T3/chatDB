@@ -10,7 +10,8 @@ export const InputPage = () => {
             <header>
                 <Navi />
             </header>
-            <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
+            <Sidebar sidebar={sidebar} setSidebar={setSidebar} />
+
         </>
     )
 }
