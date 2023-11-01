@@ -7,10 +7,12 @@ import {
   Typography, DialogHeader,
   DialogBody,
   DialogFooter,
+  Textarea,
   Input
 } from "@material-tailwind/react";
 import { ChatbotUI } from './ChatbotUI';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { v4 as uuidv4 } from 'uuid';
 
 const navigation = [
   { name: 'Dashboard', current: true },
@@ -40,6 +42,17 @@ export default function Navi() {
   //contact
   const [openConcact, setOpenConcact] = useState(false);
   const cancelConcactRef = useRef(null)
+
+
+  const createKey = () => {
+    const key = uuidv4();
+    setTextBoxValue(key);
+    setCopyMessage('');
+  }
+  const copyKey = () => {
+    navigator.clipboard.writeText(textBoxValue);
+    setCopyMessage('복사되었습니다!');
+  }
 
   const handleLoginClick = () => {
     console.log("login");
@@ -170,15 +183,19 @@ export default function Navi() {
                               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                             </svg>
                           </div>
-                          <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                          <div className="mt-3 text-center sm:ml-6 sm:mt-0 sm:text-left">
                             <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 mb-2">
                               Share
                             </Dialog.Title>
                             <hr className="border-blue-gray-50" />
-                            <div className="mt-2">
-                              <p className="text-sm text-gray-500 mb-7">
-                                랜덤키 생성되는 것
-                              </p>
+                            <div class="mt-2">
+                              Copy the key below and share it with your team!
+                            </div>
+                            <div className="flex w-full mt-6 flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
+                              {uuidv4()}
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                              </svg>
                             </div>
                           </div>
                         </div>
@@ -313,7 +330,7 @@ export default function Navi() {
           <button className="text-lg font-bold leading-6 text-white" onClick={openDrawerRight}>
             Help
           </button>
-        </Popover.Group>
+        </Popover.Group >
         <Drawer placement="right" open={openRight} onClose={closeDrawerRight} className="p-4">
           <div className="mb-7 flex items-center justify-between">
             <h3 class="text-xl text-center font-bold">
@@ -332,7 +349,7 @@ export default function Navi() {
             Log in <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
-      </nav>
+      </nav >
     </header >
   )
 }
