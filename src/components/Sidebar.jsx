@@ -11,9 +11,7 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  IconButton,
-  Button,
-  Drawer,
+  Tooltip,
   Typography
 } from "@material-tailwind/react";
 
@@ -92,7 +90,6 @@ export function Sidebar(props) {
         </Accordion>
       </List>
     </Card>
-
   );
 }
 

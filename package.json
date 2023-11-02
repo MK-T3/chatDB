@@ -40,10 +40,7 @@
     "react-modal": "^3.16.1",
     "react-native-geolocation-service": "^5.3.1",
     "react-router-dom": "^6.16.0",
-    "reactflow": "^11.9.4",
-    "sql-parser": "^0.5.0",
-    "three": "0.153.0",
-    "uuid": "^9.0.1"
+    "three": "0.153.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

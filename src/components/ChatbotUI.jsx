@@ -84,7 +84,7 @@ export function ChatbotUI() {
 
   return (
     <div className="App">
-      <div style={{ position:"relative", height: "500px", width: "auto"  }}>
+      <div style={{ position:"relative", height: "700px", width: "auto"  }}>
         <MainContainer>
           <ChatContainer>       
             <MessageList 

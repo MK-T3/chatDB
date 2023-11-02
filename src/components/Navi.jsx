@@ -1,4 +1,5 @@
 import { Fragment, React, useState, useRef } from 'react'
+<<<<<<< HEAD
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import {
@@ -11,10 +12,14 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
+=======
+import { Disclosure, Dialog, Popover, Transition } from '@headlessui/react'
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
 import {
   Drawer,
-  Button,
   Typography,
+<<<<<<< HEAD
   IconButton,
   DialogHeader,
   DialogBody,
@@ -26,6 +31,13 @@ import { v4 as uuidv4 } from 'uuid';
 import Modal from 'react-modal';
 import { Enter } from './Enter';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+=======
+  Input
+} from "@material-tailwind/react";
+import { ChatbotUI } from './ChatbotUI';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { v4 as uuidv4 } from 'uuid';
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
 
 const navigation = [
   { name: 'Dashboard', current: true },
@@ -53,7 +65,11 @@ export default function Navi() {
   //save
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null)
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
   //share
   const [openShare, setOpenShare] = useState(false);
   const cancelShareRef = useRef(null)
@@ -62,6 +78,7 @@ export default function Navi() {
   const [openConcact, setOpenConcact] = useState(false);
   const cancelConcactRef = useRef(null)
 
+<<<<<<< HEAD
   const createKey = () => {
     const key = uuidv4();
     setTextBoxValue(key);
@@ -75,6 +92,35 @@ export default function Navi() {
   
   const handleLoginClick = () => {
     setLoginModalOpen(true);
+=======
+
+  const [copied, setCopied] = useState(false);
+  const [generatedUuid, setGeneratedUuid] = useState('');
+
+  const textCopy = () => {
+    const newUuid = uuidv4();
+    navigator.clipboard.writeText(newUuid);
+    setGeneratedUuid(newUuid);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
+  const textClose = () =>{
+    setGeneratedUuid('');
+  }
+
+  //login
+  const [openLogin, setOpenLogin] = useState(false)
+  const canceLoginRef = useRef(null)
+
+
+
+
+  const handleLoginClick = () => {
+    setOpenLogin(!openLogin);
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
   };
 
   const handleSaveClick = () => {
@@ -88,6 +134,7 @@ export default function Navi() {
 
   const handleConcactClick = () => {
     setOpenConcact(!openConcact);
+<<<<<<< HEAD
   };
 
 
@@ -103,6 +150,8 @@ export default function Navi() {
       margin: 'auto',
       backgroundColor: 'rgb(79, 70, 229)',
     }
+=======
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
   };
 
   return (
@@ -187,7 +236,11 @@ export default function Navi() {
           </Transition.Root>
           <button className="text-lg font-bold leading-6 text-white" onClick={handleShareClick}>
             Share
+<<<<<<< HEAD
             </button>
+=======
+          </button>
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
           <Transition.Root show={openShare} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelShareRef} onClose={setOpenShare}>
               <Transition.Child
@@ -229,10 +282,21 @@ export default function Navi() {
                               Copy the key below and share it with your team!
                             </div>
                             <div className="flex w-full mt-6 flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
+<<<<<<< HEAD
                               {uuidv4()}
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
                               </svg>
+=======
+
+                            <div onClick={textCopy}>
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                              </svg>
+                              </div>
+                              {generatedUuid && <span>{generatedUuid}</span>}
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
                             </div>
                           </div>
                         </div>
@@ -248,8 +312,13 @@ export default function Navi() {
                         <button
                           type="button"
                           className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+<<<<<<< HEAD
                           onClick={() => setOpenShare(false)}
                           ref={cancelShareRef}
+=======
+                          onClick={() => {setOpenShare(false),textClose()}}
+                          
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
                         >
                           Cancel
                         </button>
@@ -367,7 +436,7 @@ export default function Navi() {
           <button className="text-lg font-bold leading-6 text-white" onClick={openDrawerRight}>
             Help
           </button>
-        </Popover.Group>
+        </Popover.Group >
         <Drawer placement="right" open={openRight} onClose={closeDrawerRight} className="p-4">
           <div className="mb-7 flex items-center justify-between">
             <h3 class="text-xl text-center font-bold">
@@ -381,11 +450,12 @@ export default function Navi() {
           <hr className="my-4 border-blue-gray-50" />
           <ChatbotUI />
         </Drawer>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end" onClick={handleLoginClick}>
-          <button className="text-lg font-bold leading-6 text-white ml-auto dark:md:hover:bg-indigo-600 ">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end" >
+          <button onClick={handleLoginClick} className="text-lg font-bold leading-6 text-white ml-auto dark:md:hover:bg-indigo-600 ">
             Log in <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
+<<<<<<< HEAD
       </nav>
 
       <Modal
@@ -398,5 +468,101 @@ export default function Navi() {
         <Enter />
       </Modal>
     </header>
+=======
+        <Transition.Root show={openLogin} as={Fragment}>
+          <Dialog as="div" className="relative z-10" initialFocus={canceLoginRef} onClose={setOpenLogin}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+
+                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                      Sign in to your account
+                    </h2>
+                    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                      <form className="space-y-6" action="#" method="POST">
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                            Email address
+                          </label>
+                          <div className="mt-2">
+                            <input
+                              id="email"
+                              name="email"
+                              type="email"
+                              autoComplete="email"
+                              required
+                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                              Password
+                            </label>
+                            <div className="text-sm">
+                              <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                Forgot password?
+                              </a>
+                            </div>
+                          </div>
+                          <div className="mt-2">
+                            <input
+                              id="password"
+                              name="password"
+                              type="password"
+                              autoComplete="current-password"
+                              required
+                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <button
+                            type="submit"
+                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          >
+                            Sign in
+                          </button>
+                        </div>
+                      </form>
+                      <p className="mt-10 text-center text-sm text-gray-500">
+                        Not a member?{' '}
+                        <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                          Start a 14 day free trial
+                        </a>
+                      </p>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+      </nav >
+    </header >
+>>>>>>> 980e25dca9732d4c919a9fcec9d53b6f5d975186
   )
 }
