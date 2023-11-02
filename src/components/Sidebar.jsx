@@ -1,4 +1,7 @@
 import { React, useState } from "react";
+import Editor from '@monaco-editor/react'
+import ERDiagram from "./ERDiagram";
+
 import {
   Card,
   List,
@@ -27,6 +30,9 @@ import {
 
 export function Sidebar(props) {
   const [open, setOpen] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+  const [responseValue, setResponseValue] = useState("");
+  const [mermaidValue, setMermaidValue] = useState("");
   const { sidebar, setSidebar } = props;
 
   const query = "SELECT name, population FROM city WHERE population <= 10000000 AND population >= 8000000 ORDER BY population DESC"
@@ -37,10 +43,80 @@ export function Sidebar(props) {
     setSidebar(!sidebar)
   };
 
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleButtonClick = () => {
+    // 버튼 클릭 시 동작할 로직 작성
+    const message = inputValue; // 전송할 예시 메시지
+
+    // 메시지를 포함한 JSON 객체 생성
+    const data = {
+      message: message + "   위 내용을 바탕으로 sql문 추출해줘"
+    };
+  
+    // HTTP POST 요청으로 데이터를 서버로 전송
+    fetch('http://dbwizard.iptime.org:8031', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        return response.json(); // 서버 응답을 JSON 형식으로 파싱
+        // 필요한 경우 서버 응답 처리
+      })
+      .then(data => {
+        console.log('Response:', data);
+        setResponseValue (data.message);
+        
+        // 여기서부터 mermaid code를 받아오는 부분 추가
+
+        // 버튼 클릭 시 동작할 로직 작성
+        const request = data.message + "   give me mermaid code for class diagram for the above use case"; // 전송할 예시 메시지
+
+        // 메시지를 포함한 JSON 객체 생성
+        const data2 = {
+          message: request
+        };
+      
+        // HTTP POST 요청으로 데이터를 서버로 전송
+        fetch('http://dbwizard.iptime.org:8031', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data2)
+        })
+          .then(response => {
+            return response.json(); // 서버 응답을 JSON 형식으로 파싱
+            // 필요한 경우 서버 응답 처리
+          })
+          .then(data => {
+            console.log('Response:', data);
+            setMermaidValue (data.message);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            // 요청 중에 발생한 오류 처리
+          });
+
+          // 여기까지 mermaid code를 받아오는 부분 추가
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // 요청 중에 발생한 오류 처리
+      });
+    
+    // setParentContentValue (inputValue);
+  };
+
 
   return (
     <>
-      <Card className="h-[calc(93vh)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 gap-4">
+      <Card className="h-[calc(100vh)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 gap-4">
         <h1 class="text-center font-bold text-lg">요구사항을 입력하세요!</h1>
         <Typography variant="lead" >
           Enter the requirements in the input window
@@ -48,12 +124,13 @@ export function Sidebar(props) {
         </Typography>
         <hr className="my-2 border-blue-gray-50" />
         <div className="w-auto border-indigo-600">
-          <Textarea rows={8} placeholder="Input your Requirement" />
+          <Textarea value={inputValue} onChange={handleInputChange} rows={8} placeholder="Input your Requirement" />
         </div>
         <div class="flex">
           <Tooltip content="Send your requirement">
             <button
               type="submit"
+              onClick={handleButtonClick}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5  font-bold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Enter
@@ -82,10 +159,25 @@ export function Sidebar(props) {
             </ListItem>
             <hr className="my-2 border-blue-gray-50" />
             <AccordionBody className="py-1">
-              <div>{query}</div>
+            <Editor height='300px'
+                            width='100%'
+                            language="sql"
+                            defaultValue="SELECT * FROM Students;"
+                            value={responseValue}
+                            options={{
+                                wordWrap: 'on',
+                                fontSize: 12,
+                                minimap: {enabled : false},
+                                scrollbar: {
+                                    vertical: 'auto',
+                                    horizontal: 'auto'
+                                }                            
+                            }}
+                            />
             </AccordionBody>
           </Accordion>
         </List>
+      <ERDiagram mermaidValue={mermaidValue} />
       </Card>
     </>
   );
