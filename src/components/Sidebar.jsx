@@ -1,6 +1,7 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import Editor from '@monaco-editor/react'
 import ERDiagram from "./ERDiagram";
+import MermaidContext from './MermaidContext';
 
 import {
   Card,
@@ -32,7 +33,7 @@ export function Sidebar(props) {
   const [open, setOpen] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [responseValue, setResponseValue] = useState("");
-  const [mermaidValue, setMermaidValue] = useState("");
+  const { setMermaidValue } = useContext(MermaidContext);
   const { sidebar, setSidebar } = props;
 
   const query = "SELECT name, population FROM city WHERE population <= 10000000 AND population >= 8000000 ORDER BY population DESC"
@@ -177,7 +178,6 @@ export function Sidebar(props) {
             </AccordionBody>
           </Accordion>
         </List>
-      <ERDiagram mermaidValue={mermaidValue} />
       </Card>
     </>
   );
