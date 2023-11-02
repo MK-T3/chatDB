@@ -76,7 +76,7 @@ export function Sidebar(props) {
         // 여기서부터 mermaid code를 받아오는 부분 추가
 
         // 버튼 클릭 시 동작할 로직 작성
-        const request = data.message + "   give me mermaid code for class diagram for the above use case"; // 전송할 예시 메시지
+        const request = data.message + "   give me mermaid code from sql for class-diagram for the above use case"; // 전송할 예시 메시지
 
         // 메시지를 포함한 JSON 객체 생성
         const data2 = {
