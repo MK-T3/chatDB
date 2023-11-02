@@ -44,15 +44,24 @@ export default function Navi() {
   const cancelConcactRef = useRef(null)
 
 
-  const createKey = () => {
-    const key = uuidv4();
-    setTextBoxValue(key);
-    setCopyMessage('');
+  const [copied, setCopied] = useState(false);
+  const [generatedUuid, setGeneratedUuid] = useState('');
+
+  const textCopy = () => {
+    const newUuid = uuidv4();
+    navigator.clipboard.writeText(newUuid);
+    setGeneratedUuid(newUuid);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
+  const textClose = () =>{
+    setGeneratedUuid('');
   }
-  const copyKey = () => {
-    navigator.clipboard.writeText(textBoxValue);
-    setCopyMessage('복사되었습니다!');
-  }
+
+
 
   const handleLoginClick = () => {
     console.log("login");
@@ -192,10 +201,12 @@ export default function Navi() {
                               Copy the key below and share it with your team!
                             </div>
                             <div className="flex w-full mt-6 flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
-                              {uuidv4()}
+                            <div onClick={textCopy}>
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
                               </svg>
+                              </div>
+                              {generatedUuid && <span>{generatedUuid}</span>}
                             </div>
                           </div>
                         </div>
@@ -211,8 +222,8 @@ export default function Navi() {
                         <button
                           type="button"
                           className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                          onClick={() => setOpenShare(false)}
-                          ref={cancelShareRef}
+                          onClick={() => {setOpenShare(false),textClose()}}
+                          
                         >
                           Cancel
                         </button>
