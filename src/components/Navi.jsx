@@ -1,15 +1,31 @@
+
 import { Fragment, React, useState, useRef } from 'react'
 import { Disclosure, Dialog, Popover, Transition } from '@headlessui/react'
+
+import {
+  ArrowPathIcon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline'
+
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import {
   Drawer,
   Typography,
-  Input
+  Input,
+  IconButton,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 } from "@material-tailwind/react";
 import { ChatbotUI } from './ChatbotUI';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { v4 as uuidv4 } from 'uuid';
 
+import { v4 as uuidv4 } from 'uuid';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'Dashboard', current: true },
   { name: 'Team', current: false },
@@ -24,8 +40,13 @@ function classNames(...classes) {
 export default function Navi() {
 
   const [openRight, setOpenRight] = useState(false);
+  const [isShareOpen, setShareOpen] = useState(false);
+  const [textBoxValue, setTextBoxValue] = useState('');
+  const [copyMessage, setCopyMessage] = useState('');
+
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
+
 
   //save
   const [open, setOpen] = useState(false);
@@ -64,18 +85,38 @@ export default function Navi() {
 
 
 
+  const copyKey = () =>{
+    navigator.clipboard.writeText(textBoxValue);
+    setCopyMessage('복사되었습니다!');
+  }
+
+  const createKey = () =>{
+    const key = uuidv4();
+    setTextBoxValue(key);
+    setCopyMessage('');
+  }
+
+
   const handleLoginClick = () => {
     setOpenLogin(!openLogin);
   };
+
   const handleSaveClick = () => {
     console.log("save");
     setOpen(!open);
   };
+
   const handleShareClick = () => {
+
     setOpenShare(!openShare);
   };
   const handleConcactClick = () => {
     setOpenConcact(!openConcact);
+
+  };
+
+  const handleShareDialogClose = () => {
+    setShareOpen(false);
   };
 
   return (
@@ -347,7 +388,7 @@ export default function Navi() {
         </Popover.Group >
         <Drawer placement="right" open={openRight} onClose={closeDrawerRight} className="p-4">
           <div className="mb-7 flex items-center justify-between">
-            <h3 class="text-xl text-center font-bold">
+            <h3 className="text-lg text-center font-bold">
               ChatBot Service
             </h3>
           </div>
