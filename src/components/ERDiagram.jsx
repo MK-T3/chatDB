@@ -1,23 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import MermaidContext from './MermaidContext';
 import mermaid from 'mermaid';
 
 const ERDiagram = (props) => {
-    const { mermaidValue } = props;
+    const { mermaidValue, setMermaidValue } = useContext(MermaidContext);
     console.log(mermaidValue);
-
-    useEffect(() => {
-        mermaid.initialize({ startOnLoad: true });
-        mermaid.contentLoaded();
-    }, [mermaidValue]);
-
+    
     const removeMermaidTagFromStart = (content) => {
         if (!content) return "";
-        return content.replace(/^```\mermaid\s+/, "");
+        return content.replace(/^```\mermaid\s+/, "").replace(/\s+```$/, "");
     }
 
     const processedMermaidValue = removeMermaidTagFromStart(mermaidValue);
 
+    useEffect(() => {
+        mermaid.contentLoaded();
+    }, [mermaidValue]);
+
+
     return <div className="mermaid">{processedMermaidValue}</div>;
 };
+
+mermaid.initialize({ startOnLoad: false });
 
 export default ERDiagram;

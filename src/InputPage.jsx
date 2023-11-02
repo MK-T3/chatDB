@@ -2,6 +2,7 @@ import Navi from "./components/Navi"
 import { Sidebar } from "./components/Sidebar"
 import { useState } from "react"
 import ERDiagram from "./components/ERDiagram";
+import MermaidProvider from './components/MermaidProvider';
 
 export const InputPage = () => {
     const [sidebar, setSidebar] = useState(false);
@@ -11,6 +12,7 @@ export const InputPage = () => {
             <header>
                 <Navi />               
             </header>
+            <MermaidProvider>
             <div style={{ display: 'flex' }}>  {/* Flexbox 사용 */}
                 {/* Sidebar */}
                 <div style={{ flex: 1 }}>
@@ -25,6 +27,7 @@ export const InputPage = () => {
                     </div>
                 </div>
             </div>
+            </MermaidProvider>
 
         </>
     )
