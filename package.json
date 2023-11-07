@@ -27,6 +27,7 @@
     "express-session": "^1.17.3",
     "framer-motion": "^10.16.4",
     "framer-motion-3d": "^10.16.4",
+    "html2canvas": "^1.4.1",
     "random-word": "^2.0.0",
     "random-words": "^2.0.0",
     "react": "^18.2.0",

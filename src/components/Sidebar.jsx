@@ -35,6 +35,7 @@ export function Sidebar(props) {
   const [responseValue, setResponseValue] = useState("");
   const { setMermaidValue } = useContext(MermaidContext);
   const { sidebar, setSidebar } = props;
+  
 
   const query = "SELECT name, population FROM city WHERE population <= 10000000 AND population >= 8000000 ORDER BY population DESC"
 

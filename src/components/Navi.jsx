@@ -1,5 +1,6 @@
 import { Fragment, React, useState, useRef } from 'react'
 import { Disclosure, Dialog, Popover, Transition } from '@headlessui/react'
+import html2canvas from 'html2canvas';
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import {
   Drawer,
@@ -128,6 +129,25 @@ export default function Navi() {
   const handleConcactClick = () => {
     setOpenConcact(!openConcact);
   };
+  // Save 버튼을 눌렀을 때 호출될 함수
+  const saveDiagramAsImage = () => {
+    // 캡쳐할 DOM 요소를 선택
+    const diagram = document.getElementById('diagramToSave');
+
+    // html2canvas를 사용하여 해당 요소를 캡쳐
+    html2canvas(diagram).then((canvas) => {
+      // canvas를 이미지로 변환
+      const image = canvas.toDataURL('image/png');
+
+      // 이미지를 다운로드 할 수 있도록 링크 생성
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'ERDiagram.png'; // 다운로드 될 파일명
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  };
 
   return (
     <header className="bg-indigo-600">
@@ -175,12 +195,12 @@ export default function Navi() {
                           </div>
                           <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                             <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 mb-2">
-                              Database Schema Save
+                              Database Diagram Save
                             </Dialog.Title>
                             <hr className="border-blue-gray-50" />
                             <div className="mt-2">
                               <p className="text-sm text-gray-500">
-                                Are you going to save the schema you created?
+                                Are you going to save the Diagram you created?
                               </p>
                             </div>
                           </div>
@@ -190,7 +210,7 @@ export default function Navi() {
                         <button
                           type="button"
                           className="inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 sm:ml-3 sm:w-auto"
-                          onClick={() => setOpen(false)}
+                          onClick={saveDiagramAsImage}
                         >
                           Save
                         </button>
