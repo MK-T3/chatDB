@@ -23,7 +23,7 @@ export const InputPage = () => {
                 {/* Main Content */}
                 <div style={{ flex: 3, backgroundColor: 'White', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                     {/* MainContent 컴포넌트 혹은 직접 내용 추가 */}
-                    <div>
+                    <div id="diagramToSave">
                     <ERDiagram/>
                     </div>
                 </div>
