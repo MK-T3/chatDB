@@ -147,6 +147,8 @@ export default function Navi() {
       link.click();
       document.body.removeChild(link);
     });
+
+    setOpen(false);
   };
 
   return (
