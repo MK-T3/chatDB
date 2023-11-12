@@ -1,0 +1,53 @@
+.container {
+    background-color: #339e2f;
+  }
+  
+  .sqlbar {
+    position: absolute;
+    bottom:0; /* 아래에서 숨겨진 상태 */
+    height: 5%;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    left: 0;
+    background: #b3b5ba;
+    transition: height 1s ease, width 1s ease;
+    overflow: hidden;
+
+  }
+
+  .open {
+    height:75%;
+    width: 100%;
+    /* SQL 바를 보이게 . */
+  }
+  
+  .button {
+    position: absolute;
+    bottom: 10px; /* 하단 여백 조정 */
+    left: 50%; /* 화면 가운데로 이동 */
+    transform: translateX(-50%); /* 수평으로 가운데 정렬 */
+    width: 20px;
+    height: 20px;
+    z-index: 99;
+    transition: 0.8s ease;
+
+    border-radius: 40px;
+
+  }
+  
+  .openBtn {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .content {
+    padding: 40px 40px 0 20px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .icon {
+    margin: 0;
+    color: #202020;
+  }

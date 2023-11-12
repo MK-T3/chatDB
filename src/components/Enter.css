@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.background {
+  background-color: #FFFFFF; /* 파란색 계열 배경색 */
+  height: auto;
+  width: 90%;
+  max-width: 450px;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+}
+
+.login {
+  border: none;
+  border-bottom: 2px solid #D1D1D4;
+  background: none;
+  padding: 10px;
+  font-weight: 700;
+  transition: .2s;
+  width: 75%;
+
+}
+
+.login:active,
+.login:focus,
+.login:hover {
+  outline: none;
+  border-bottom-color: #2B6BFF; /* 파란색 계열 하이라이트 색상 */
+}
+
+.btn {
+  border: none;
+  width: 75%;
+  background-color: #2B6BFF; /* 파란색 계열 배경색 */
+  color: white;
+  padding: 15px 0;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  background-color: #1A4ABF; /* 파란색 계열 하이라이트 배경색 */
+}
+
+.btn:disabled {
+  background-color: #D1D1D4; /* 비활성 상태 배경색 */
+  cursor: not-allowed;
+}

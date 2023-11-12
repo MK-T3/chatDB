@@ -1,6 +1,7 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import Editor from '@monaco-editor/react'
 import ERDiagram from "./ERDiagram";
+import MermaidContext from './MermaidContext';
 
 import {
   Card,
@@ -32,8 +33,9 @@ export function Sidebar(props) {
   const [open, setOpen] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [responseValue, setResponseValue] = useState("");
-  const [mermaidValue, setMermaidValue] = useState("");
+  const { setMermaidValue } = useContext(MermaidContext);
   const { sidebar, setSidebar } = props;
+  
 
   const query = "SELECT name, population FROM city WHERE population <= 10000000 AND population >= 8000000 ORDER BY population DESC"
 
@@ -75,7 +77,7 @@ export function Sidebar(props) {
         // 여기서부터 mermaid code를 받아오는 부분 추가
 
         // 버튼 클릭 시 동작할 로직 작성
-        const request = data.message + "   give me mermaid code for class diagram for the above use case"; // 전송할 예시 메시지
+        const request = data.message + "   give me mermaid code from sql for class-diagram for the above use case"; // 전송할 예시 메시지
 
         // 메시지를 포함한 JSON 객체 생성
         const data2 = {
@@ -177,7 +179,6 @@ export function Sidebar(props) {
             </AccordionBody>
           </Accordion>
         </List>
-      <ERDiagram mermaidValue={mermaidValue} />
       </Card>
     </>
   );
