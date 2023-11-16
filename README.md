@@ -1,6 +1,6 @@
-<div align="center">
-  <h1>chatDB</h1>
-</div>
+![header](https://capsule-render.vercel.app/api?type=Waving&color=auto&width=auto&height=300&section=header&text=chatDB&fontSize=80)
+
+
 
 ## 👋 소개
 
@@ -33,14 +33,14 @@
 <img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=openai&logoColor=white"/>
 <br/>
 
-## 🖥️ 시스템 아키텍처
+## ⚙️시스템 아키텍처
 <img src="https://github.com/MK-T3/chatDB/assets/95284588/9e761b1f-10b2-4c4b-9a05-9e755aa2801d" width="650">
 
-## 실행화면
-<img src="https://github.com/MK-T3/chatDB/assets/95284588/4c50fad3-b4b3-40b2-85cb-cc37cac0aecc" width="500" height="300">
-<img src="https://github.com/MK-T3/chatDB/assets/95284588/bc4bb9cb-37db-4e63-a8a9-0909714eebcf" width="500" height="300">
-<img src="https://github.com/MK-T3/chatDB/assets/95284588/50b2c653-11b3-4419-a016-1d03f01c5e70" width="500" height="300">
-<img src="https://github.com/MK-T3/chatDB/assets/95284588/2a5a80dd-37ff-41b3-8cd4-2f7810d22c79" width="500" height="300">
+## 🖥️ 실행화면
+<img src="https://github.com/MK-T3/chatDB/assets/95284588/4c50fad3-b4b3-40b2-85cb-cc37cac0aecc" width="300" height="200">
+<img src="https://github.com/MK-T3/chatDB/assets/95284588/bc4bb9cb-37db-4e63-a8a9-0909714eebcf" width="300" height="200">
+<img src="https://github.com/MK-T3/chatDB/assets/95284588/50b2c653-11b3-4419-a016-1d03f01c5e70" width="300" height="200">
+<img src="https://github.com/MK-T3/chatDB/assets/95284588/2a5a80dd-37ff-41b3-8cd4-2f7810d22c79" width="300" height="200">
 
 
 
